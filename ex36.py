@@ -25,6 +25,7 @@ def dead(howIDie):
     print howIDie
     exit()
 
+
 # define treasure room function
 # four options and a death
 # else of typing mush
@@ -161,7 +162,7 @@ def middleMonsterMonty():
     elif blackKnightFight in ("2", "Holy Hand Grenade of Antioch"):
         print """
         After consulting the instructions, you pull the pin and begin to count before throwing the grenade.
-        \"One. Two. Four!\"
+        \"One. Two. Five!\"
         """
         dead("Having skipped over the number 'three' the grenade explodes in your hand, killing you and Patsy instantly")
     elif blackKnightFight in ("3", "dismember"):
@@ -191,7 +192,6 @@ def leftDoor():
         leftMonsterMonty()
     else:
         print "Honestly, I don't know how the script could run and get this far"
-
 
 # define function and responses for left room if normal_pack is selected
 def leftMonsterNormal():
@@ -281,7 +281,7 @@ def leftMonsterMonty():
     elif bunnyFight in ("2", "Holy Hand Grenade of Antioch"):
         print """
         After consulting the instructions, you pull the pin and begin to count before throwing the grenade.
-        \"One. Two. Four!\"
+        \"One. Two. Five!\"
         """
         dead("Having skipped over the number 'three' the grenade explodes in your hand, killing you and Patsy instantly")
     elif bunnyFight in ("3", "flee"):
@@ -301,7 +301,8 @@ def leftMonsterMonty():
         or maybe the other thing you naughty person
         """)
 
-# define function for left room to select responses based on monster pack
+
+# define function for right room to select responses based on monster pack
 # run appropriate function for the monster pack selected
 def rightDoor():
     if monster_file == "normal_pack.txt":
@@ -311,6 +312,115 @@ def rightDoor():
     else:
         print "Honestly, I don't know how the script could run and get this far"
 
-# define function and responses for left room if normal_pack is selected
+# define function and responses for right room if normal_pack is selected
 def rightMonsterNormal():
-    pass
+    print """
+    Opening the door on the right, you find yourself confronted by a hungry %s
+    \"Brrrrrrraaaaaaaaaaaiiiiiiinnnnnnnnnnnsssssssss\" it growls as it turns and begins to lumber towards you
+    Suddenly, you lock eyes with the zombie and you feel a strange power corrupting you.
+    It dawns on you that this is no ordinary zombie.
+    """ % roomRightMonster
+
+    print """
+    How will you deal with the risen dead and it's strange, entrancing power?
+    1.    It's just one zombie and I've seen Day of the Dead like 47 times! Here comes an axe to the face!
+    2.    ...wha? I... the zombie is... calling to me. I... I want to hug it...
+    3.    What wizardry is this?!?!? Must... Resist... Zombie... Magic!!! Must... Run... Away!!!
+    """
+
+    # define zombieFight user response variable
+    zombieFight = raw_input("Choose now, and choose wisely...")
+
+    # if statements for all of the different responses
+    if zombieFight in ("1", "axe"):
+        print """
+        As you raise the axe you inexplicably found above your head,
+        You suddenly lock eyes with the zombie again.
+        Staring into the black, dead eyes, your arms go heavy and you become transfixed
+        It all makes sense now. The world is a lie.
+        The only truth is the nihilist hedonism of the zombie.
+        """
+        dead("Brrrrrrraaaaaaaaaaaiiiiiiinnnnnnnnnnnsssssssss!!!")
+    elif zombieFight in ("2", "hug"):
+        print """
+        Unable to break away from the zombie's compelling gaze, you become transfixed
+        It all makes sense now. The world is a lie.
+        The only truth is the nihilist hedonism of the zombie.
+        """
+        dead("You and the zombie hug it out and venture out in search of tasty, tasty brains.")
+    elif zombieFight in ("3", "run away"):
+        print """
+        Realizing the hypnotizing effect of the souless, zombie eyes staring back at you,
+        You tear your gaze away and run back the way you came in abject terror.
+        Close call my friend. Now see what horrors await behind the other doors!
+        """
+        mainRoom()
+    else:
+        print """
+        Despite... whatever it was you just typed, you can't seem to avert your gaze.
+        The black, souless eyes of the zombie call to you in ways that seem to shatter reality itself.
+        You're transfixed.
+        It all makes sense now. The world is a lie.
+        The only truth is the nihilist hedonism of the zombie.
+        """
+        dead("""
+        Not that your brain is capable of rational thought any longer, but if it were,
+        You would be cursing yourself for not simply having selected one of the predetermined responses.
+        """)
+
+# define the function for the right to run the monty_python_pack responses
+def rightMonsterMonty():
+    print """
+    Walking through the door on the right, you see before you
+    a giant chasm with a rickety rope and plank bridge spanning it.
+    *it looks a bit like a bridge of death*
+    As you apprach the bridge, you see that the old man from scene 24 stands at the foot of the bridge
+    Before venturing across, you must answer his questions three
+    Ere the other side you see!
+    """
+    questionOne = raw_input("WHAT is you name? ")
+    questionTwo = raw_input("WHAT is your quest? ")
+    questionThree = raw_input("WHAT airspeed of an unladen swallow? ")
+
+    if questionThree == "What do you mean, an African or European swallow?":
+        print """
+        The old man from scene 24 looks puzzled and spurts out:
+        \"Huh? What? I... I don't know that...\"
+        and he is suddenly flung into the air and is cast down into the Gorge of Eternal Peril.
+        However, on the way down, the rush of air from his falling body collapse the bridge.
+        There is now no way across the Gorge of Eternil Peril.
+        You must go back and find another way.
+        """
+        mainRoom()
+    else:
+        print "WRONG!!!"
+        dead("You are suddenly grabbed by a magical force, hoisted into the air and flung into the Gorge of Eternal Peril!")
+
+
+# define the mainRoom function
+def mainRoom():
+    print """
+    Welcome, welcome weary traveller!
+    As you can see, there are three doors before you.
+    Behind each door lies... who knows what?
+    But, should you keep your wits about you, I promise you a treasure at the end.
+
+    Which door will you choose?
+    1.    The door on the left
+    2.    The door in the middle
+    3.    The door on the right
+    """
+    firstDoor = raw_input("So choose now, and choose wisely...")
+
+    # if statements to select which function to run
+    if firstDoor in ("1", "left"):
+        leftDoor()
+    elif firstDoor in ("2", "middle"):
+        middleDoor()
+    elif firstDoor in ("3", "right"):
+        rightDoor()
+    else:
+        print "Please just type 1, 2 or 3 to select your door."
+        mainRoom()
+
+mainRoom()
